@@ -3,6 +3,7 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.integer :untappd_id
       t.string :user_name
+      t.string :first_name
       t.string :location
       t.date :birthday
       t.references :user_beers, index: true

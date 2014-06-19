@@ -1,11 +1,11 @@
 class CreateBreweries < ActiveRecord::Migration
   def change
     create_table :breweries do |t|
-      t.integer :untappd_id
-      t.string :name
-      t.string :city
-      t.string :state
-      t.string :country
+      t.integer :brewery_id
+      t.string :brewery_name
+      t.string :brewery_city
+      t.string :brewery_state
+      t.string :country_name
       t.float :lat
       t.float :lng
       t.references :beer, index: true
