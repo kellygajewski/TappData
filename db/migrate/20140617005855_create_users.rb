@@ -6,8 +6,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :first_name
       t.string :location
       t.date :birthday
-      t.references :user_beers, index: true
-      t.references :checkin, index: true
+      #t.references :user_beers, index: true
+      #t.references :checkin, index: true
 
       t.timestamps
     end
