@@ -15,6 +15,10 @@ class CreateCheckins < ActiveRecord::Migration
       t.float :lat
       t.float :lng
 
+      #new
+      t.references :beer, index: true
+      t.references :user, index: true
+
       t.timestamps
     end
   end

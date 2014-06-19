@@ -8,7 +8,7 @@ class CreateBreweries < ActiveRecord::Migration
       t.string :country_name
       t.float :lat
       t.float :lng
-      t.references :beer, index: true
+      #t.references :beer, index: true
 
       t.timestamps
     end
