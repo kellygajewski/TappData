@@ -40,6 +40,7 @@ gem 'spring',        group: :development
 
 #for Heroku
 gem 'rails_12factor'
+gem 'httparty'
 
 gem 'figaro'
 
