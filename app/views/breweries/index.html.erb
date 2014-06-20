@@ -49,7 +49,63 @@
     <% end %> 
   </tbody>
 </table>
-
 <br>
+<table>
+    </tbody>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Checkin Id</th>
+      <th>Created</th> 
+      <th>Rating</th> 
+      <th>User Id</th> 
+      <th>Beer Id</th>
+      <th>Brewery id</th>
+      <th>Venue City</th>
+      <th>Venue State</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @checkins.each do |c| %>
+      <tr>
+        <th><%= c['id'] %></th>
+        <th><%= c['checkin_id'] %></th>
+        <th><%= c['created_at'] %></th>
+        <th><%= c['rating_score'] %></th>
+        <th><%= c['uid'] %></th>
+        <th><%= c['bid'] %></th>
+        <th><%= c['brewery_id'] %></th>
+        <th><%= c['venue_city'] %></th>
+        <th><%= c['venue_state'] %></th>
+      </tr>
+    <% end %> 
+  </tbody>
+</table>
+
+<table>
+    </tbody>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>User Id</th>
+      <th>Name</th> 
+      <th>Location</th> 
+  
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @styles.each do |s| %>
+      <tr>
+        <th><%= s['style_id'] %></th>
+        <th><%= s['beer_style'] %></th>
+        <th><%= c['user_name'] %></th>
+        <th><%= c['location'] %></th>
+      </tr>
+    <% end %> 
+  </tbody>
+</table>
+
 
 
