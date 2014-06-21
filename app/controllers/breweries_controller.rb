@@ -7,6 +7,6 @@ class BreweriesController < ApplicationController
     @style = HTTParty.get("http://guarded-reaches-3146.herokuapp.com/styles.json")
   end
 
-  def create
+  def beer_ratings
   end
 end
