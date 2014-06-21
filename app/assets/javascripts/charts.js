@@ -52,7 +52,10 @@ function drawChart(beers, checkins, users) {
   d3.select(".chart")
     .selectAll("div")
       .data(data)
+
     .enter().append("div")
       .style("width", function(d) { return x(d) + "px"; })
-      .text(function(e) { return e; });
+      .text(function(d) { return d; });
+
+      
 }
