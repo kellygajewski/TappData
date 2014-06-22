@@ -54,8 +54,10 @@ function drawChart(beers, checkins, users) {
       .data(data)
 
     .enter().append("div")
+      .transition()
+      .duration(2000)
       .style("width", function(d) { return x(d) + "px"; })
       .text(function(d) { return d; });
 
-      
+
 }
