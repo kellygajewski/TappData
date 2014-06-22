@@ -49,3 +49,5 @@ group :development, :test do
 end
 
 gem 'untappd'
+
+gem 'engtagger'
