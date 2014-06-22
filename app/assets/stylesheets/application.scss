@@ -12,9 +12,11 @@
  *
  *= require_tree .
  *= require_self
- */
+ *= require foundation_and_overrides
 
-h1 {
+ */
+@import "foundation_and_overrides";
+header {
 	background-color: rgba(25, 80, 10, .5);
 }
 
@@ -25,4 +27,8 @@ h1 {
   padding: 3px;
   margin: 1px;
   color: white;
+}
+
+.nav-left-item {
+   background-color:blue;
 }
