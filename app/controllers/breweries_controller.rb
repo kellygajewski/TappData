@@ -1,6 +1,6 @@
 class BreweriesController < ApplicationController
 	def index
-    @breweries = HTTParty.get("http://guarded-reaches-3146.herokuapp.com/breweries.json")
+	@untappd = Untappd::User.feed
     @beers = HTTParty.get("http://guarded-reaches-3146.herokuapp.com/beers.json")
     @checkins = HTTParty.get("http://guarded-reaches-3146.herokuapp.com/checkins.json")
     @users = HTTParty.get("http://guarded-reaches-3146.herokuapp.com/users.json")

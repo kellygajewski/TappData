@@ -86,34 +86,33 @@ function interpolateHsl(a, b) {
   };
 }
 
-function beerRatingIPA (beers) {
-  console.log(beers.length);
-  x = 1;
-  ipaSum = 0;
-  ipaCount = 0;
-  ipaAvg = 0;
-  while (x < beers.length){
-    var beerStyle = beers[beers.length-x]['beer_style'];
-    var ratingScore = beers[beers.length-x]['rating_score'];
-      if (beerStyle === "IPA") {
-        ipa = beerStyle;
-        console.log(ipa + "mofo");
-        ipaSum += ratingScore;
-        ipaCount += 1;
-      }
-    var beerScore = []; // create an empty array
-    beerScore.push({
-    key:   beerStyle,
-    value: ratingScore
-    });
-    beer = (beerScore[0].key);
-    score = (beerScore[0].value);
-    x++;
-  }
-  ipaAvg = ipaSum / ipaCount;
-  console.log(ipaAvg);
-  return ipaAvg;
-}
+// function beerRatingIPA (beers) {
+//   console.log(beers.length);
+//   x = 1;
+//   ipaSum = 0;
+//   ipaCount = 0;
+//   ipaAvg = 0;
+//   while (x < beers.length){
+//     var beerStyle = beers[beers.length-x]['beer_style'];
+//     var ratingScore = beers[beers.length-x]['rating_score'];
+//       if (beerStyle === "IPA") {
+//         ipa = beerStyle;
+//         ipaSum += ratingScore;
+//         ipaCount += 1;
+//       }
+//     var beerScore = []; // create an empty array
+//     beerScore.push({
+//     key:   beerStyle,
+//     value: ratingScore
+//     });
+//     beer = (beerScore[0].key);
+//     score = (beerScore[0].value);
+//     x++;
+//   }
+//   ipaAvg = ipaSum / ipaCount;
+//   console.log(ipaAvg);
+//   return ipaAvg;
+// }
 
 
 

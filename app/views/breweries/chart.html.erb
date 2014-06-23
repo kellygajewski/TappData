@@ -2,6 +2,24 @@
 
 <div id="chart2"></div>
 
+<div id="chartContainer">
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://dimplejs.org/dist/dimple.v2.0.0.min.js"></script>
+  <script type="text/javascript">
+
+    var svg = dimple.newSvg("#chartContainer", 590, 400);
+    d3.tsv("/data/example_data.tsv", function (data) {
+      var myChart = new dimple.chart(svg, data);
+      myChart.setBounds(90, 50, 480, 310)
+      myChart.addCategoryAxis("x", ["Channel", "Price Tier"]);
+      myChart.addCategoryAxis("y", "Owner");
+      myChart.addSeries("Price Tier", dimple.plot.bar);
+      myChart.addLegend(240, 10, 330, 20, "right");
+      myChart.draw();
+    });
+  </script>
+</div>
+
 <script>
 
 	var data = [4, 8, 15, 16, 23, 42];
