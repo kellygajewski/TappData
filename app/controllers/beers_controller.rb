@@ -1,5 +1,5 @@
-require 'rubygems'
-require 'engtagger'
+# require 'rubygems'
+# require 'engtagger'
 
 class BeersController < ApplicationController
 	def index
