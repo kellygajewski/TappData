@@ -1,5 +1,15 @@
-require 'rails_helper'
+require 'spec_helper'
 
-RSpec.describe BreweriesController, :type => :controller do
+describe BreweriesController do
+	describe "GET 'index'" do
 
+		it 'should render index template' do
+			expect(response).to render_template :index
+		end
+
+		it "should succeed" do
+    		expect(response).to be_success
+    	end
+
+    end
 end

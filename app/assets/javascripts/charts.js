@@ -1,4 +1,21 @@
-function drawChart(beers, checkins, users) {
+// brings in all api data in json form to the javascript page
+function rawData (beers, checkins, users, breweries) {
+  beers = beers;
+  checkins = checkins;
+  users = users;
+  breweries = breweries;
+  console.log(breweries);
+  chartCalls(beers, checkins, users, breweries);
+}
+
+// calls the function of all charts to be displayed. This will allow us to quickly see all charts we have enabled in one place
+function chartCalls (beers, checkins, users, breweries) {
+  basicBarGraph(beers, checkins, users);
+}
+
+
+// each function contains a different chart with a specific set of data to be combined
+function basicBarGraph(beers, checkins, users) {
     var ratingScore = beers[beers.length-1]['rating_score'];
     var ratingCount = beers[beers.length-1]['rating_count'];
     var ratingUserScore = checkins[checkins.length-1]['rating_score'];
@@ -12,6 +29,7 @@ function drawChart(beers, checkins, users) {
     var porter = 0;
     var wheat = 0;
     var stout = 0;
+
     for (i=0; i < beers.length; i++) {
       if (beers[i]['beer_style'] === "IPA") {
         ipa++;
@@ -31,6 +49,9 @@ function drawChart(beers, checkins, users) {
     }
   console.log(beers[beers.length-1]['rating_count']);
   console.log(beerStyle);
+
+
+
 
     var div = document.createElement("div");
     div.innerHTML = "Hello, world!";
@@ -54,8 +75,9 @@ function drawChart(beers, checkins, users) {
       .data(data)
 
     .enter().append("div")
+      .transition()
+      .duration(2000)
       .style("width", function(d) { return x(d) + "px"; })
       .text(function(d) { return d; });
 
-      
 }
