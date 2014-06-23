@@ -1,0 +1,23 @@
+body {
+  background: #222;
+  font: 10px sans-serif;
+  margin: auto;
+  position: relative;
+  width: 960px;
+}
+
+text {
+  text-anchor: middle;
+}
+
+#credit {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  color: #ddd;
+}
+
+#credit a {
+  color: #fff;
+  font-weight: bold;
+}

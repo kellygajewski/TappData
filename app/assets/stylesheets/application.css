@@ -17,6 +17,9 @@
 h1 {
 	background-color: rgba(25, 80, 10, .5);
 }
+body {
+	background-color: rgba(25, 80, 10, .5);
+}
 
 .chart div {
   font: 10px sans-serif;
@@ -25,4 +28,14 @@ h1 {
   padding: 3px;
   margin: 1px;
   color: white;
+}
+
+.chart rect {
+  fill: steelblue;
+}
+
+.chart text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end;
 }
