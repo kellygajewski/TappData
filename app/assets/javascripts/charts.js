@@ -1,3 +1,4 @@
+
 // // function rawData (beers, checkins, users) {
 // //   beers = beers;
 // //   checkins = checkins;

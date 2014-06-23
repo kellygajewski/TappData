@@ -30,6 +30,7 @@ body {
   color: white;
 }
 
+
 .chart rect {
   fill: steelblue;
 }
@@ -39,3 +40,4 @@ body {
   font: 10px sans-serif;
   text-anchor: end;
 }
+

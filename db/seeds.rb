@@ -42,13 +42,20 @@
 # Beer.create(name: 'Eurotrash Pilz', style: 'Czech Pilsener', brewer: 'Long Trail Brewing Company', description: 'What started as a way for our cellarmen to propagate yeast for our summer seasonal Farmer’s Tan has taken on a life of its own. Originally brewed as a house draught brand and made in very limited quantities, Eurotrash Pilz is now available in our seasonal lineup. Fitting perfectly between Old Man Winter and Hop Sun, this addition will help bridge the gap between winter and the summer months. Eurotrash Pilz is a lightly carbonated, malty pilsner, and is perfect for session drinking.', user_rating: 3, brewer_city: 'Lakewood', brewer_state: 'NY', brewer_country: 'United States')
 # Beer.create(name: 'Finestkind IPA', style: 'American IPA', brewer: 'Smuttynose Brewing Co.', description: 'You could say, then, that Smuttynose IPA is a physical salute to the glory of the American hop grower. The citrusy hop flavor coming from a mixture of Simcoe, Centennial and Santiam is pleasantly balanced by a smooth bitterness from the Amarillo hops. The beer itself is light bodied and crisp with a golden color that will throw a slight haze, as we bottle it unfiltered. At 70 IBU\'s, this is definitely not a training-wheels IPA, but is meant for hop lovers looking to satisfy their craving in a way that\'s not easy to find. We think they’ll be quite pleased.', user_rating: 4, brewer_city: 'Hampton', brewer_state: 'NH', brewer_country: 'United States')
 
-records = JSON.parse(File.read('db/beers.json'))
-records.each do |record|
-  Beer.create!(record)
-end
+# records = JSON.parse(File.read('db/beers.json'))
+# records.each do |record|
+# 	record = record.except('url')
+#   Beer.create!(record)
+# end
 
-morerecords = JSON.parse(File.read('checkins.json'))
-morerecords.each do |mrecord|
-  Checkin.create!(mrecord)
-end
+# morerecords = JSON.parse(File.read('db/checkins.json'))
+# morerecords.each do |mrecord|
+#   Checkin.create!(mrecord)
+# end
+
+# andrecords = JSON.parse(File.read('db/breweries.json'))
+# andrecords.each do |mrecord|
+# 	mrecord = mrecord.except('url')
+#   Brewery.create!(mrecord)
+# end
 
