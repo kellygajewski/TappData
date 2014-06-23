@@ -44,16 +44,18 @@
 
 # records = JSON.parse(File.read('db/beers.json'))
 # records.each do |record|
+# 	record = record.except('url')
 #   Beer.create!(record)
 # end
 
-# morerecords = JSON.parse(File.read('checkins.json'))
+# morerecords = JSON.parse(File.read('db/checkins.json'))
 # morerecords.each do |mrecord|
 #   Checkin.create!(mrecord)
 # end
 
-# andrecords = JSON.parse(File.read('breweries.json'))
+# andrecords = JSON.parse(File.read('db/breweries.json'))
 # andrecords.each do |mrecord|
+# 	mrecord = mrecord.except('url')
 #   Brewery.create!(mrecord)
 # end
 
