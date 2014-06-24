@@ -86,6 +86,9 @@ class BeersController < ApplicationController
 		@dec_total = $dec_count
 	end
 
+	def style_amount_per_month(style)
+		if $jan_count == "Pale Ale"
+
 	def main_style(response)
 		if response.beer.beer_style.include?("Porter")
 			month_finder(response, "Porter")
