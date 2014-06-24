@@ -7,9 +7,9 @@ function rawData (beers, checkins, users, breweries) {
   console.log(breweries);
   chartCalls(beers, checkins, users, breweries);
 }
-d3.json("http://guarded-reaches-3146.herokuapp.com/beers.json", function(json) {
-    console.log(json + "jsondata");  //Log output to console
-});
+// d3.json("http://guarded-reaches-3146.herokuapp.com/beers.json", function(json) {
+//     console.log(json + "jsondata");  //Log output to console
+// });
 
 // calls the function of all charts to be displayed. This will allow us to quickly see all charts we have enabled in one place
 function chartCalls (beers, checkins, users, breweries) {
