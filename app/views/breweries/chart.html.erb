@@ -7,16 +7,16 @@
   <script src="http://dimplejs.org/dist/dimple.v2.0.0.min.js"></script>
   <script type="text/javascript">
 
-    var svg = dimple.newSvg("#chartContainer", 590, 400);
-    d3.tsv("/data/example_data.tsv", function (data) {
-      var myChart = new dimple.chart(svg, data);
-      myChart.setBounds(90, 50, 480, 310)
-      myChart.addCategoryAxis("x", ["Channel", "Price Tier"]);
-      myChart.addCategoryAxis("y", "Owner");
-      myChart.addSeries("Price Tier", dimple.plot.bar);
-      myChart.addLegend(240, 10, 330, 20, "right");
-      myChart.draw();
-    });
+    // var svg = dimple.newSvg("#chartContainer", 590, 400);
+    // d3.tsv("/data/example_data.tsv", function (data) {
+    //   var myChart = new dimple.chart(svg, data);
+    //   myChart.setBounds(90, 50, 480, 310)
+    //   myChart.addCategoryAxis("x", ["Channel", "Price Tier"]);
+    //   myChart.addCategoryAxis("y", "Owner");
+    //   myChart.addSeries("Price Tier", dimple.plot.bar);
+    //   myChart.addLegend(240, 10, 330, 20, "right");
+    //   myChart.draw();
+    // });
   </script>
 </div>
 
@@ -90,7 +90,7 @@
 <button class="first" id="group" onclick="transitionGroup()">Group</button>
 <button class="last active" id="stack" onclick="transitionStack()">Stack</button>
 <div id="chart"></div>
-<div class="legend"></div>
+<!-- <div class="legend"></div> -->
 
 <script>
    function stream_layers(n, m, o) {
@@ -125,7 +125,11 @@ var n = 4, // number of layers
      // 		[{x:0, y:53}, {x:1, y:86}, {x:2, y:23}, {x:3,y:12}],
      // 		[{x:0, y:54}, {x:1,y:76}, {x:2, y:95}, {x:3, y:31}], 
      // 		[{x:0, y:71}, {x:1,y:23}, {x:2, y:52}, {x:3,y:43}]],
-     data = d3.layout.stack()([[{x: 0, y: 23, name:"ipa"}, {x:1, y:43, name:"ipa"}, {x:2, y:76, name:"ipa"}, {x:3,y:76, name:"ipa"}],
+     data = d3.layout.stack()([
+     	[{x: 0, y: 23, name:"ipa"}, 
+     	{x:1, y:43, name:"ipa"}, 
+     	{x:2, y:76, name:"ipa"}, 
+     	{x:3,y:76, name:"ipa"}],
       		[{x:0, y:53, name:"ipa"}, {x:1, y:86, name:"ipa"}, {x:2, y:23, name:"ipa"}, {x:3,y:12, name:"ipa"}],
       		[{x:0, y:54, name:"ipa"}, {x:1,y:76, name:"ipa"}, {x:2, y:95, name:"ipa"}, {x:3, y:31, name:"ipa"}], 
       		[{x:0, y:71, name:"ipa"}, {x:1,y:23, name:"ipa"}, {x:2, y:52, name:"ipa"}, {x:3,y:43, name:"ipa"}]]),
@@ -136,10 +140,10 @@ var n = 4, // number of layers
      w = 960,
      h = 500 - .5 - p,
      seasons=["Spring", "Summer", "Fall", "Winter"],
-     color_hash = {  0 : ["apple", "green"],
-					    1 : ["mango", "orange"],
-					    2 : ["cherry", "red"]
-					  },
+     // color_hash = {  0 : ["apple", "green"],
+					//     1 : ["mango", "orange"],
+					//     2 : ["cherry", "red"]
+					//   },
      mx = m,
      my = d3.max(data, function(d) {
        return d3.max(d, function(d) {
@@ -200,33 +204,33 @@ var n = 4, // number of layers
      .attr("y1", h)
      .attr("y2", h);
 
- var legend = svg.append("g")
-	  .attr("class", "legend")
-	  .attr("x", w - 65)
-	  .attr("y", 25)
-	  .attr("height", 100)
-	  .attr("width", 100);
+ // var legend = svg.append("g")
+	//   .attr("class", "legend")
+	//   .attr("x", w - 65)
+	//   .attr("y", 25)
+	//   .attr("height", 100)
+	//   .attr("width", 100);
 
-	legend.selectAll('g').data(data)
-      .enter()
-      .append('g')
-      .each(function(d, i) {
-        var g = d3.select(this);
-        g.append("rect")
-          .attr("x", w - 65)
-          .attr("y", i*25)
-          .attr("width", 10)
-          .attr("height", 10)
-          .style("fill", color_hash[String(i)][1]);
+	// legend.selectAll('g').data(data)
+ //      .enter()
+ //      .append('g')
+ //      .each(function(d, i) {
+ //        var g = d3.select(this);
+ //        g.append("rect")
+ //          .attr("x", w - 65)
+ //          .attr("y", i*25)
+ //          .attr("width", 10)
+ //          .attr("height", 10)
+ //          .style("fill", color_hash[String(i)][1]);
         
-        g.append("text")
-          .attr("x", w - 50)
-          .attr("y", i * 25 + 8)
-          .attr("height",30)
-          .attr("width",100)
-          .style("fill", color_hash[String(i)][1])
-          .text(color_hash[String(i)][0]);
-      })
+ //        g.append("text")
+ //          .attr("x", w - 50)
+ //          .attr("y", i * 25 + 8)
+ //          .attr("height",30)
+ //          .attr("width",100)
+ //          .style("fill", color_hash[String(i)][1])
+ //          .text(color_hash[String(i)][0]);
+ //      })
  
  function transitionGroup() {
    var group = d3.selectAll("#chart");

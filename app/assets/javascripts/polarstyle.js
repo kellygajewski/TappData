@@ -5,7 +5,7 @@ function rawData (beers, checkins, users, breweries) {
   breweries = breweries;
   console.log(breweries);
   chartCalls(beers, checkins, users, breweries);
-  beerRatingIPA(beers);
+  //beerRatingIPA(beers);
 }
 
 var width = 960,
