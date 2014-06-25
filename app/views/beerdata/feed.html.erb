@@ -2,11 +2,19 @@
 
 <!-- stacked bar chart!! -->
 
+<%= form_tag(beerdata_feed_path, :method => :get) do%>
+  <%= label_tag 'username', "User Name:" %>
+  <%= text_field_tag 'username' %>
+  <%= submit_tag 'Search' %>
+<% end %>
 <div id="chart">
   <div class ="buttons">
   <button class="first" id="group" onclick="transitionGroup()">Group</button>
   <button class="last active" id="stack" onclick="transitionStack()">Stack</button>
 </div>
+
+
+<h1><%= @beer_months %></h1>
 
 </div>
 <!-- <div class="legend"></div> -->
@@ -209,4 +217,3 @@ var n = 4, // number of layers
  }
 </script>
  
-  
