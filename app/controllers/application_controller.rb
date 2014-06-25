@@ -85,10 +85,6 @@ class ApplicationController < ActionController::Base
 	end
 
 
-	def style_counter()
-	end
-
-
 	def loop_maker
 		i = 0
 		@response = Untappd::User.feed("Kelly310").checkins.items
@@ -103,9 +99,6 @@ class ApplicationController < ActionController::Base
 
 
 	def month_finder(response, category)
-
-	    
-	
 
 		month = response.created_at[8..10]
 		if month == "Jan"
@@ -147,42 +140,24 @@ class ApplicationController < ActionController::Base
 		@month_counts.push(@oct_count)
 		@month_counts.push(@nov_count)
 		@month_counts.push(@dec_count)
-		calc_beer_months #(@month_counts)
+		calc_beer_months 
 
 	end
 
-	# def style_amount_per_month(style)
-	# 	if $jan_count == "Pale Ale"
-
-
-
-	def calc_beer_months #(month_counts)
+	
+#Creates 2D array of the number of checkins per each month (rows/layers) per beer style (columns/bars). Next step is to convert each element into an object where each x is the column index (relates to each style) and each y is the number of checkins for that beer style per month ie {x: 0, y: 23} and this array can then be fed into the D3 stacked bar chart.
+	def calc_beer_months
 		@top_beer_styles=["Porter", "Stout", "Brown Ale", "Pale Ale", "Wheat Beer", "Other Ale", "American Light Lager", "Other Lager", "Pilsner", "Cider", "Other"]
-		# @beer_months=Array.new(12)
-		# styles=Array.new(11)
-		# styles.map! { |x| x = 0}
-		# @test1 = @beer_months
-		# @beer_months.map! {|x| x = styles}
 
 		@beer_months = Array.new(12) { Array.new(11, 0)}
 
-	    
-	 #    for month_index in 0...12
-	 #      for that_months_beer in 0...@month_counts[month_index].length 
-	 #        for one_beer_style in 0...@top_beer_styles.length
-	 #          if (that_months_beer == one_beer_style)  
-	 #            @beer_months[month_index][one_beer_style]+=1
-	 #          end
-	 #          one_beer_style+=1
-	 #        end
-	 #        that_months_beer+=1
-	 #      end
-	 #      month_index+=1
-		# end
-
+		#for each of the arrays in month_counts corresponding to each month
 		@month_counts.each do |x|
+			#for each checkin in that month
 	      x.each do |that_months_beer|
+	      	#for each style in the beer styles array
 	        @top_beer_styles.each do |one_beer_style|
+	        	#if the beer style of the checkin equals the beer style in the array, increment the value of number of beers for that style for that month
 	          if (that_months_beer == one_beer_style)  
 	            @beer_months[@month_counts.index(x)][@top_beer_styles.index(one_beer_style)]+=1
 	          end	     
