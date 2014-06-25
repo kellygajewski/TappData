@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   resources :breweries
   resources :charts
   resources :beers
+  
+  root "beerdata#index"
+  get "beerdata/:show" => "beerdata#feed"
 
-  root 'breweries#chart'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
