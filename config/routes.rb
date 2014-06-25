@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   
   root "beerdata#index"
-  get "beerdata/:show" => "beerdata#feed"
+  get "beerdata/feed" => "beerdata#feed", :as => "beerdata_feed"
   
 
 

@@ -21,24 +21,25 @@ class BeerdataController < ApplicationController
   	end
 
   	def feed
+  		@username = params[:username] || "kelly310"
+		@response = Untappd::User.feed(@username, :limit => 50).checkins.items
+  		@month_counts=[]
+		@jan_count = []
+		@feb_count = []
+		@mar_count = []
+		@apr_count = []
+		@may_count = []
+		@jun_count = []
+		@jul_count = []
+		@aug_count = []
+		@sep_count = []
+		@oct_count = []
+		@nov_count = []
+		@dec_count = []	
 
-  # 		@month_counts=[]
-		# @jan_count = []
-		# @feb_count = []
-		# @mar_count = []
-		# @apr_count = []
-		# @may_count = []
-		# @jun_count = []
-		# @jul_count = []
-		# @aug_count = []
-		# @sep_count = []
-		# @oct_count = []
-		# @nov_count = []
-		# @dec_count = []	
-
-		# @response.each do |r|
-  # 			main_style(r)
-  # 		end
+		@response.each do |r|
+  			main_style(r)
+  		end
   	end
 
 	#Should return the top 3 nouns, noun phrases, or adjectives per description sample using the Engtagger gem
@@ -62,7 +63,7 @@ class BeerdataController < ApplicationController
 
 
 	def get_feed
-		@response = Untappd::User.feed("kelly310", :limit => 50).checkins.items
+		
 	end
 
 
