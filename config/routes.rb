@@ -2,9 +2,12 @@ Rails.application.routes.draw do
   resources :breweries
   resources :charts
   resources :beers
+  resources :checkins
+
   
   root "beerdata#index"
   get "beerdata/:show" => "beerdata#feed"
+  
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,28 +1,44 @@
 class BeerdataController < ApplicationController
 
+  	# before_action :get_single_feed, only: [:index]
+  	# before_action :get_feed, only: [:feed]
 
-  	before_action :get_single_feed, only: [:index]
-  	before_action :get_feed, only: [:feed]
-
-  	def index
-  		@month_counts=[]
-		@jan_count = []
-		@feb_count = []
-		@mar_count = []
-		@apr_count = []
-		@may_count = []
-		@jun_count = []
-		@jul_count = []
-		@aug_count = []
-		@sep_count = []
-		@oct_count = []
-		@nov_count = []
-		@dec_count = []
-  		main_style(@response)
+  	def index  	
+  # 		@month_counts=[]
+		# @jan_count = []
+		# @feb_count = []
+		# @mar_count = []
+		# @apr_count = []
+		# @may_count = []
+		# @jun_count = []
+		# @jul_count = []
+		# @aug_count = []
+		# @sep_count = []
+		# @oct_count = []
+		# @nov_count = []
+		# @dec_count = []
+  # 		main_style(@response)
   	end
 
   	def feed
 
+  # 		@month_counts=[]
+		# @jan_count = []
+		# @feb_count = []
+		# @mar_count = []
+		# @apr_count = []
+		# @may_count = []
+		# @jun_count = []
+		# @jul_count = []
+		# @aug_count = []
+		# @sep_count = []
+		# @oct_count = []
+		# @nov_count = []
+		# @dec_count = []	
+
+		# @response.each do |r|
+  # 			main_style(r)
+  # 		end
   	end
 
 	#Should return the top 3 nouns, noun phrases, or adjectives per description sample using the Engtagger gem
@@ -46,7 +62,7 @@ class BeerdataController < ApplicationController
 
 
 	def get_feed
-		@response = Untappd::User.feed("jennifermarie", :limit => 50).checkins.items
+		@response = Untappd::User.feed("kelly310", :limit => 50).checkins.items
 	end
 
 
@@ -56,40 +72,41 @@ class BeerdataController < ApplicationController
 
 	def main_style(response)
 
-		if response.beer.beer_style.include?("Porter")
-			month_finder(response, "Porter")
-			return "Porter"
-		elsif response.beer.beer_style.include?("Stout")
-			month_finder(response, "Stout")
-			return "Stout"
-		elsif response.beer.beer_style.include?("Brown Ale") || response.beer.beer_style.include?("Dubbel")
-			month_finder(response, "Brown Ale")
-			return "Brown Ale" 
-		elsif ((response.beer.beer_style.include?("Pale") || response.beer.beer_style.include?("Amber") || response.beer.beer_style.include?("Red") ||  response.beer.beer_style.include?("Blonde") || response.beer.beer_style.include?("Scottish")) && response.beer.beer_style.include?("Ale")) || response.beer.beer_style.include?("Belgian Blonde") || response.beer.beer_style.include?("IPA") || response.beer.beer_style.include?("Barleywine") || response.beer.beer_style.include?("Bière de Garde") || response.beer.beer_style.include?("Saison") || response.beer.beer_style.include?("Bitter")
-			month_finder(response, "Pale Ale")
-			return "Pale Ale" 
-		elsif response.beer.beer_style.include?("Hefeweizen") || response.beer.beer_style.include?("Witbier")
-			month_finder(response, "Wheat Beer")
-			return "Wheat Beer"
-		elsif response.beer.beer_style.include?("Ale") || response.beer.beer_style.include?("Altbier") || response.beer.beer_style.include?("Quadrupel")
-			month_finder(response, "Other Ale")
-			return "Other Ale"
-		elsif response.beer.beer_style.include?("American Adjunct Lager") || response.beer.beer_style.include?("American Light Lager")
-			month_finder(response, "American Lager")
-			return "American Lager"
-		elsif response.beer.beer_style.include?("Lager") || response.beer.beer_style.include?("bock") || response.beer.beer_style.include?("Bock")
-			month_finder(response, "Other Lager")
-			return "Other Lager"
-		elsif response.beer.beer_style.include?("Pilsner")
-			month_finder(response, "Pilsner")
-			return "Pilsner"
-		elsif response.beer.beer_style.include?("Cider")
-			month_finder(response, "Cider")
-			return "Cider"
-		else
-			month_finder(response, "Other")
-			return "Other"
-		end	
+			if response.beer.beer_style.include?("Porter")
+				month_finder(response, "Porter")
+				return "Porter"
+			elsif response.beer.beer_style.include?("Stout")
+				month_finder(response, "Stout")
+				return "Stout"
+			elsif response.beer.beer_style.include?("Brown Ale") || response.beer.beer_style.include?("Dubbel")
+				month_finder(response, "Brown Ale")
+				return "Brown Ale" 
+			elsif ((response.beer.beer_style.include?("Pale") || response.beer.beer_style.include?("Amber") || response.beer.beer_style.include?("Red") ||  response.beer.beer_style.include?("Blonde") || response.beer.beer_style.include?("Scottish")) && response.beer.beer_style.include?("Ale")) || response.beer.beer_style.include?("Belgian Blonde") || response.beer.beer_style.include?("IPA") || response.beer.beer_style.include?("Barleywine") || response.beer.beer_style.include?("Bière de Garde") || response.beer.beer_style.include?("Saison") || response.beer.beer_style.include?("Bitter")
+				month_finder(response, "Pale Ale")
+				return "Pale Ale" 
+			elsif response.beer.beer_style.include?("Hefeweizen") || response.beer.beer_style.include?("Witbier")
+				month_finder(response, "Wheat Beer")
+				return "Wheat Beer"
+			elsif response.beer.beer_style.include?("Ale") || response.beer.beer_style.include?("Altbier") || response.beer.beer_style.include?("Quadrupel")
+				month_finder(response, "Other Ale")
+				return "Other Ale"
+			elsif response.beer.beer_style.include?("American Adjunct Lager") || response.beer.beer_style.include?("American Light Lager")
+				month_finder(response, "American Lager")
+				return "American Lager"
+			elsif response.beer.beer_style.include?("Lager") || response.beer.beer_style.include?("bock") || response.beer.beer_style.include?("Bock")
+				month_finder(response, "Other Lager")
+				return "Other Lager"
+			elsif response.beer.beer_style.include?("Pilsner")
+				month_finder(response, "Pilsner")
+				return "Pilsner"
+			elsif response.beer.beer_style.include?("Cider")
+				month_finder(response, "Cider")
+				return "Cider"
+			else
+				month_finder(response, "Other")
+				return "Other"
+			end	
+	
 	end
 
 
@@ -139,13 +156,13 @@ class BeerdataController < ApplicationController
 		@month_counts.push(@oct_count)
 		@month_counts.push(@nov_count)
 		@month_counts.push(@dec_count)
-		calc_beer_months 
+		calc_beer_months(@month_counts)
 
 	end
 
 	
 #Creates 2D array of the number of checkins per each month (rows/layers) per beer style (columns/bars). Next step is to convert each element into an object where each x is the column index (relates to each style) and each y is the number of checkins for that beer style per month ie {x: 0, y: 23} and this array can then be fed into the D3 stacked bar chart.
-	def calc_beer_months
+	def calc_beer_months(x)
 		@top_beer_styles=["Porter", "Stout", "Brown Ale", "Pale Ale", "Wheat Beer", "Other Ale", "American Light Lager", "Other Lager", "Pilsner", "Cider", "Other"]
 
 		@beer_months = Array.new(12) { Array.new(11, 0)}
@@ -192,5 +209,10 @@ class BeerdataController < ApplicationController
 	# 	else
 	# 		return "Other"
 	# 	end	
+	private
+
+	def user_params
+      	params.require(:user).permit(:first_name)
+    end
 
 end

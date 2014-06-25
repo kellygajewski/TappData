@@ -1,0 +1,9 @@
+<%= form_for @checkin, url: {action: "create"} do |f| %>
+
+	<%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+
+ 
+  <%= f.submit "Create" %>
+<% end %>
+<% @checkin %>
