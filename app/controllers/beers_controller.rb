@@ -4,6 +4,7 @@
 class BeersController < ApplicationController
 
 	def index
+		@month_counts=[]
 		@jan_count = []
 		@feb_count = []
 		@mar_count = []
@@ -16,16 +17,26 @@ class BeersController < ApplicationController
 		@oct_count = []
 		@nov_count = []
 		@dec_count = []
-	    @response = Untappd::User.feed("Kelly310").checkins.items
-	    r = 0
-	    while r < @response.length
-		    single_checkin = @response[r]
-		    main_style(single_checkin)
-		    r += 1
-		end		
 
-	end
-		
+		# if params[:search].present?
+		# 	input = params[:search].to_s
+		# 	@response = Untappd::User.feed(input).checkins.items
+		#     r = 0
+		#     while r < @response.length
+		# 	    single_checkin = @response[r]
+		# 	    main_style(single_checkin)
+		# 	    r += 1
+		# 	end
+		# else	
+		    @response = Untappd::User.feed("Kelly310").checkins.items
+		    r = 0
+		    while r < @response.length
+			    single_checkin = @response[r]
+			    main_style(single_checkin)
+			    r += 1
+			end
+		end
+	#end
 end
 
 

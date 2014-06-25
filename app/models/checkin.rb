@@ -2,7 +2,7 @@ class Checkin < ActiveRecord::Base
 	belongs_to :beer
 	belongs_to :user
 
-	@top_beer_styles=["Porter", "Stout", "Brown Ale", "Pale Ale", "Wheat Beer", "Other Ale", "American Light Lager", "Other Lager", "Pilsner", "Cider", "Other"]
+	
     
 
 	#(Hopefully) creates 2D array of the number of checkins per each beer style (columns) per month (rows). Next step is to convert each element into an object where each x is the column index and each y is the number of checkins per month ie {x: 0, y: 23} and this can then be fed into the D3 stacked bar chart.

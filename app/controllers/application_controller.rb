@@ -3,19 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-   @month_counts=[]
-		@jan_count = []
-		@feb_count = []
-		@mar_count = []
-		@apr_count = []
-		@may_count = []
-		@jun_count = []
-		@jul_count = []
-		@aug_count = []
-		@sep_count = []
-		@oct_count = []
-		@nov_count = []
-		@dec_count = []
+   	
 	#Should return the top 3 nouns, noun phrases, or adjectives per description sample using the Engtagger gem
 	def self.top_words
 		tgr = EngTagger.new
@@ -159,8 +147,7 @@ class ApplicationController < ActionController::Base
 		@month_counts.push(@oct_count)
 		@month_counts.push(@nov_count)
 		@month_counts.push(@dec_count)
-		@test2 = @month_counts
-		calc_beer_months(@month_counts)
+		calc_beer_months #(@month_counts)
 
 	end
 
@@ -169,22 +156,39 @@ class ApplicationController < ActionController::Base
 
 
 
-	def calc_beer_months(month_counts)
-		@test4 = @month_counts
+	def calc_beer_months #(month_counts)
+		@top_beer_styles=["Porter", "Stout", "Brown Ale", "Pale Ale", "Wheat Beer", "Other Ale", "American Light Lager", "Other Lager", "Pilsner", "Cider", "Other"]
 		# @beer_months=Array.new(12)
-		# styles=Array.new(@top_beer_styles.length)
+		# styles=Array.new(11)
 		# styles.map! { |x| x = 0}
-		# @beer_months.map! {|x| x = 0}
+		# @test1 = @beer_months
+		# @beer_months.map! {|x| x = styles}
 
-	 #    for month in 0...12
-	 #      for month_beer in 0...@month_counts[h].length 
-	 #        for b_style in 0...@top_beer_styles.length
-	 #          if (month_beer == b_style)  
-	 #            @beer_months[month_beer][b_style]+=1
+		@beer_months = Array.new(12) { Array.new(11, 0)}
+
+	    
+	 #    for month_index in 0...12
+	 #      for that_months_beer in 0...@month_counts[month_index].length 
+	 #        for one_beer_style in 0...@top_beer_styles.length
+	 #          if (that_months_beer == one_beer_style)  
+	 #            @beer_months[month_index][one_beer_style]+=1
 	 #          end
+	 #          one_beer_style+=1
 	 #        end
+	 #        that_months_beer+=1
 	 #      end
+	 #      month_index+=1
 		# end
+
+		@month_counts.each do |x|
+	      x.each do |that_months_beer|
+	        @top_beer_styles.each do |one_beer_style|
+	          if (that_months_beer == one_beer_style)  
+	            @beer_months[@month_counts.index(x)][@top_beer_styles.index(one_beer_style)]+=1
+	          end	     
+	        end
+	      end
+		end
 
 	end
 	
