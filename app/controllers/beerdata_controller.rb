@@ -182,6 +182,14 @@ class BeerdataController < ApplicationController
 	      end
 		end
 
+		@awesomeness = []
+		@beer_months.each do |m|
+			this_month = []
+			(0...m.length).each do |s_idx|
+				this_month << {x: s_idx, y: m[s_idx]}
+			end
+			@awesomeness << this_month
+		end
 	end
 	
 
