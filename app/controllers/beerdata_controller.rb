@@ -177,6 +177,7 @@ class BeerdataController < ApplicationController
 	        	#if the beer style of the checkin equals the beer style in the array, increment the value of number of beers for that style for that month
 	          if (that_months_beer == one_beer_style)  
 	            @beer_months[@month_counts.index(x)][@top_beer_styles.index(one_beer_style)]+=1
+	            $beertestz = 1
 	          end	     
 	        end
 	      end

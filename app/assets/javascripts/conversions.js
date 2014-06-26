@@ -4,7 +4,6 @@ function rawData (beers, checkins, users, breweries) {
   checkins = checkins;
   users = users;
   breweries = breweries;
-  console.log(breweries);
   chartCalls(beers, checkins, users, breweries);
 }
 // d3.json("http://guarded-reaches-3146.herokuapp.com/beers.json", function(json) {
@@ -112,8 +111,6 @@ function beerRatingName (beers) {
   while (x < beers.length){
     var beerName = beers[beers.length-x]['beer_name'];
     var ratingScore = beers[beers.length-x]['rating_score'];
-    console.log(beerName);
-    console.log(ratingScore);
     x++;
   }
 }

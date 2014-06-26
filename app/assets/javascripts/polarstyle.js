@@ -3,7 +3,6 @@ function rawData (beers, checkins, users, breweries) {
   checkins = checkins;
   users = users;
   breweries = breweries;
-  console.log(breweries);
   chartCalls(beers, checkins, users, breweries);
   //beerRatingIPA(beers);
 }
@@ -67,8 +66,6 @@ function arcTween(d) {
 function fields(beerStyle, avg) {
   var now = new Date;
   arr = [beerStyle, avg]
-  console.log(beerStyle);
-  console.log(avg);
   return [
     {index: .6, text: "IPA", value: 4 / 5},
     {index: .5, text: "Stout", value: 3.9 / 5},
