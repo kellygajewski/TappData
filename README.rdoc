@@ -1,28 +1,5 @@
-== README
+Tappd: That App!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+http://tappdthatapp.herokuapp.com/
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+For users of the app Untappd (a social media site that allows users to "check in" and rate each beer they drink), our app provides advanced data analytics and visualizations to help users better understand their beer tastes and discover new beers. Still a work in progress between Kelly Gajewski and Anthony Corrado, this app is built with Ruby on Rails, D3, and JavaScript.
