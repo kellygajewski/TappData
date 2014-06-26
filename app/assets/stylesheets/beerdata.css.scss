@@ -5,7 +5,8 @@
 #main-container {
 	margin: 50px;
 	background: rgba(150, 120, 100, .8);
-	border: 30px solid rgba(70, 30, 20, .6);
+	border-top: 30px solid rgba(70, 30, 20, .6);
+	border-bottom: 30px solid rgba(70, 30, 20, .6);
 	border-radius: 100%;
 }
 .navbar {
@@ -22,13 +23,14 @@ ul {
 	list-style: none;
 }
 svg {
-	margin: 75px 0 0 200px;
+	margin: 30px 0 0 100px;
 }
 
 .buttons {
-	margin: 50px 0 0 600px;
+	margin: 30px 0 0 600px;
 }
 .bottom-border {
-	background: rgba(70, 30, 20, .6);
-	height: 100px;
+	background: rgba(40, 16, 12, .0);
+	height: 150px;
+	width: 100%;
 }

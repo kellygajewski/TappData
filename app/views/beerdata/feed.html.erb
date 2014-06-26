@@ -1,13 +1,13 @@
 
 <div class="navbar">
     <ul>
-      <li>TapData</li>
+      <li>Tap: That App!</li>
     </ul>
 </div>
 <!-- stacked bar chart!! -->
 <div id="main-container">
 
-  
+
 
   <%= form_tag(beerdata_feed_path, :method => :get) do%>
     <%= label_tag 'username', "User Name:" %>
@@ -74,13 +74,13 @@ var n = 12, // number of layers
       //    [{x:0, y:54, name:"ipa"}, {x:1,y:76, name:"ipa"}, {x:2, y:95, name:"ipa"}, {x:3, y:31, name:"ipa"}], 
       //    [{x:0, y:71, name:"ipa"}, {x:1,y:23, name:"ipa"}, {x:2, y:52, name:"ipa"}, {x:3,y:43, name:"ipa"}]]
           ),
-     color = d3.interpolateRgb("#226666", "#2E4372");
+     color = d3.interpolateRgb("#FFECA0", "#491119");
      console.log(data);
  
  var p = 20,
-     w = 960,
+     w = 1100,
      h = 500 - .5 - p,
-     seasons=["Spring", "Summer", "Fall", "Winter"],
+     beerStyles=["Porter", "Stout", "Brown Ale", "Pale Ale", "Wheat Beer", "Other Ale", "American Lager", "Other Lager", "Pilsner", "Cider", "Other"],
      // color_hash = {  0 : ["apple", "green"],
           //     1 : ["mango", "orange"],
           //     2 : ["cherry", "red"]
@@ -137,7 +137,7 @@ var n = 12, // number of layers
      .attr("dx", x({x: .45}))
      .attr("dy", ".71em")
      .attr("text-anchor", "middle")
-     .text(function(d, i) { return i; });
+     .text(function(d, i) { return beerStyles[i]; });
  
  vis.append("svg:line")
      .attr("x1", 0)
