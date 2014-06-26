@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :checkins
 
   
-  root "beerdata#index"
+  root "beerdata#feed"
   get "beerdata/feed" => "beerdata#feed", :as => "beerdata_feed"
   
 
