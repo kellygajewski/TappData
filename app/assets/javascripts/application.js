@@ -13,3 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+
+console.log(<%= $beertestz.to_json %>);
+console.log(<%= array_or_string_for_javascript($beertestz) %>);
