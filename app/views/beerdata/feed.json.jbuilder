@@ -1,4 +1,5 @@
-json.array! (@response) do |beer|
-  json.extract! beer
-  json.url beer_url(beer, format: :json)
+json.beers do
+  @top_beer_styles.each do |b| 
+  	json.set! "x", b
+  end
 end

@@ -1,70 +1,22 @@
+//function stackedBar() {
+// var url ="assets/beerdata.json";
+// 	d3.json(url, function( error, data) {
+	 var n = 4, // number of layers
+     	m = 4, // number of samples per layer
+      // data = [[{x: 0, y: 23}, {x:1, y:43}, {x:2, y:76}, {x:3,y:76}],
+      // 		[{x:0, y:53}, {x:1, y:86}, {x:2, y:23}, {x:3,y:12}],
+      // 		[{x:0, y:54}, {x:1,y:76}, {x:2, y:95}, {x:3, y:31}], 
+      // 		[{x:0, y:71}, {x:1,y:23}, {x:2, y:52}, {x:3,y:43}]],
+	
+     data = d3.layout.stack()([
+     	[{x: 0, y: 23, name:"ipa"}, 
+     	{x:1, y:43, name:"ipa"}, 
+     	{x:2, y:76, name:"ipa"}, 
+     	{x:3,y:76, name:"ipa"}],
 
-
-<!-- stacked bar chart!! -->
-
-<%= form_tag(beerdata_feed_path, :method => :get) do%>
-  <%= label_tag 'username', "User Name:" %>
-  <%= text_field_tag 'username' %>
-  <%= submit_tag 'Search' %>
-<% end %>
-<div id="chart">
-  <div class ="buttons">
-  <button class="first" id="group" onclick="transitionGroup()">Group</button>
-  <button class="last active" id="stack" onclick="transitionStack()">Stack</button>
-</div>
-
-
-<h1><%= @beer_months %></h1>
-
-</div>
-<!-- <div class="legend"></div> -->
-
-<script>
-   function stream_layers(n, m, o) {
-   if (arguments.length < 3) o = 0;
-   function bump(a) {
-     var x = 1 / (.1 + Math.random()),
-         y = 2 * Math.random() - .5,
-         z = 10 / (.1 + Math.random());
-     for (var i = 0; i < m; i++) {
-       var w = (i / m - y) * z;
-       a[i] += x * Math.exp(-w * w);
-     }
-   }
-   return d3.range(n).map(function() {
-       var a = [], i;
-       for (i = 0; i < m; i++) a[i] = o + o * Math.random();
-
-       for (i = 0; i < 5; i++) bump(a);
-
-       console.log( a.map(stream_index));
-   return a.map(stream_index);
-     });
- }
-
-  function stream_index(d, i) {
-   return {x: i, y: Math.max(0, d)};
- }
-
-var n = 12, // number of layers
-     m = 11, // number of samples per layer
-     myCoolStuff = <%= raw @awesomeness.to_json %>,
-     // data = [[{x: 0, y: 23}, {x:1, y:43}, {x:2, y:76}, {x:3,y:76}],
-     // 		[{x:0, y:53}, {x:1, y:86}, {x:2, y:23}, {x:3,y:12}],
-     // 		[{x:0, y:54}, {x:1,y:76}, {x:2, y:95}, {x:3, y:31}], 
-     // 		[{x:0, y:71}, {x:1,y:23}, {x:2, y:52}, {x:3,y:43}]],
-
-     data = d3.layout.stack()(
-      myCoolStuff
-     	// [{x: 0, y: 23, name:"ipa"}, 
-     	// {x:1, y:43, name:"ipa"}, 
-     	// {x:2, y:76, name:"ipa"}, 
-     	// {x:3,y:76, name:"ipa"}],
-
-      // 		[{x:0, y:53, name:"ipa"}, {x:1, y:86, name:"ipa"}, {x:2, y:23, name:"ipa"}, {x:3,y:12, name:"ipa"}],
-      // 		[{x:0, y:54, name:"ipa"}, {x:1,y:76, name:"ipa"}, {x:2, y:95, name:"ipa"}, {x:3, y:31, name:"ipa"}], 
-      // 		[{x:0, y:71, name:"ipa"}, {x:1,y:23, name:"ipa"}, {x:2, y:52, name:"ipa"}, {x:3,y:43, name:"ipa"}]]
-          ),
+      		[{x:0, y:53, name:"ipa"}, {x:1, y:86, name:"ipa"}, {x:2, y:23, name:"ipa"}, {x:3,y:12, name:"ipa"}],
+      		[{x:0, y:54, name:"ipa"}, {x:1,y:76, name:"ipa"}, {x:2, y:95, name:"ipa"}, {x:3, y:31, name:"ipa"}], 
+      		[{x:0, y:71, name:"ipa"}, {x:1,y:23, name:"ipa"}, {x:2, y:52, name:"ipa"}, {x:3,y:43, name:"ipa"}]]),
      color = d3.interpolateRgb("#226666", "#2E4372");
      console.log(data);
  
@@ -72,10 +24,7 @@ var n = 12, // number of layers
      w = 960,
      h = 500 - .5 - p,
      seasons=["Spring", "Summer", "Fall", "Winter"],
-     // color_hash = {  0 : ["apple", "green"],
-					//     1 : ["mango", "orange"],
-					//     2 : ["cherry", "red"]
-					//   },
+
      mx = m,
      my = d3.max(data, function(d) {
        return d3.max(d, function(d) {
@@ -128,41 +77,13 @@ var n = 12, // number of layers
      .attr("dx", x({x: .45}))
      .attr("dy", ".71em")
      .attr("text-anchor", "middle")
-     .text(function(d, i) { return i; });
+     .text(function(d, i) { return seasons[i]; });
  
  vis.append("svg:line")
      .attr("x1", 0)
      .attr("x2", w - x({x: .1}))
      .attr("y1", h)
      .attr("y2", h);
-
- // var legend = svg.append("g")
-	//   .attr("class", "legend")
-	//   .attr("x", w - 65)
-	//   .attr("y", 25)
-	//   .attr("height", 100)
-	//   .attr("width", 100);
-
-	// legend.selectAll('g').data(data)
- //      .enter()
- //      .append('g')
- //      .each(function(d, i) {
- //        var g = d3.select(this);
- //        g.append("rect")
- //          .attr("x", w - 65)
- //          .attr("y", i*25)
- //          .attr("width", 10)
- //          .attr("height", 10)
- //          .style("fill", color_hash[String(i)][1]);
-        
- //        g.append("text")
- //          .attr("x", w - 50)
- //          .attr("y", i * 25 + 8)
- //          .attr("height",30)
- //          .attr("width",100)
- //          .style("fill", color_hash[String(i)][1])
- //          .text(color_hash[String(i)][0]);
- //      })
  
  function transitionGroup() {
    var group = d3.selectAll("#chart");
@@ -189,6 +110,7 @@ var n = 12, // number of layers
          .attr("height", y2);
    }
  }
+
  
  function transitionStack() {
    var stack = d3.select("#chart");
@@ -218,5 +140,4 @@ var n = 12, // number of layers
 
 
  }
-</script>
- 
+ //});
