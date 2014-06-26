@@ -17,3 +17,11 @@
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore working js files
+/app/assets/javascripts/beerdata.js
+/app/assets/javascripts/charts.js
+/app/assets/javascripts/conversions.js
+/app/assets/javascripts/matrix.js
+/app/assets/javascripts/polarstyle.js
+/app/assets/javascripts/stackedbar.js
