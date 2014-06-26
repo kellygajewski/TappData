@@ -10,10 +10,10 @@
 	border-radius: 100%;
 }
 .navbar {
-	width: 101%;
+	width: 100%;
 	text-align: center;
-	font-size: 40px;
-	margin-top: -35px;
+	font-size: 60px;
+	margin-top: -45px;
 	margin-left: -10px;
 	color: rgba(150, 120, 100, 1);
 	decoration: none;
@@ -22,15 +22,114 @@
 ul {
 	list-style: none;
 }
-svg {
-	margin: 30px 0 0 100px;
+form {
+	font-size:24px;
+	padding:10px;
+	margin-top: 15px;
+	text-align: center;
+	margin-right: 50px;
+	line-height: 10px;
+}
+.form-div {
+	padding: 4px;
+}
+#username {
+	height: 24px;
 }
 
+
+svg {
+	margin: 30px 0 0 175px;
+}
+
+.enter-btn {
+
+}
+
+#group {
+	border-radius: 100% 0 0 100%;
+	background: white;
+	box-shadow: 0 2px 0 2px rgba(0, 0, 0, .3);
+}
+#group:active {
+	border-radius: 100% 0 0 100%;
+	background: white;
+	box-shadow: 0 2px 0 2px rgba(0, 0, 0, .3);
+    background: #2E5481;
+    border: none;
+}
+
+#stack {
+	border-radius: 0 100% 100% 0;
+	background: white;
+	box-shadow: 0 2px 0 2px rgba(0, 0, 0, .3)	
+}
+.display-name {
+	text-align: center;
+	font-size: 30px;
+	margin-top: 10px;
+}
 .buttons {
-	margin: 30px 0 0 600px;
+	text-align: center;
+	border: 0;
+}
+button:focus, input:focus{
+    outline: 0;
 }
 .bottom-border {
 	background: rgba(40, 16, 12, .0);
-	height: 150px;
+	height: 170px;
 	width: 100%;
+}
+.color-legend {
+	display: block;
+	width: 50%;
+	margin: 0 auto;
+	height:30px;
+	background-color: rgba(70, 30, 20, .30);
+}
+.legend-bar {
+
+}
+li {
+	text-align: left;
+	display: inline;
+
+}
+
+.jan-color {
+	width: 100px;
+	height: 12px;
+	background-color: #ffeca0;
+	display: inline-block;
+}
+.early-spring-color {
+	width: 100px;
+	height: 12px;
+	background-color: #cdb07b;
+	display: inline-block;
+}
+.spring-color {
+	width: 100px;
+	height: 12px;
+	background-color: #bd9c6f;
+	display: inline-block;
+}
+.early-fall-color {
+	width: 100px;
+	height: 12px;
+	background-color: #ac8863;
+	display: inline-block;
+}
+.fall-color {
+	width: 100px;
+	height: 12px;
+	background-color: #8b614a;
+	display: inline-block;
+}
+.dec-color {
+	width: 100px;
+	height: 12px;
+	background-color: #491119;
+	display: inline-block;
 }

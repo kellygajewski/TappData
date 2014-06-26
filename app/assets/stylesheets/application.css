@@ -18,6 +18,7 @@ h1 {
 	background-color: rgba(25, 80, 10, .5);
 }
 body {
+  margin: 0 -10px 0 0;
 	background-color: rgba(25, 80, 10, .5);
   background: url(western_saloon.jpg);
   font-family: 'Lobster', cursive;
@@ -33,9 +34,7 @@ body {
 }
 
 
-.chart rect {
-  fill: steelblue;
-}
+
 
 .chart text {
   fill: white;

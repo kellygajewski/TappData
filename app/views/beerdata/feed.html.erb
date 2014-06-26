@@ -8,19 +8,32 @@
 <div id="main-container">
 
 
-
-  <%= form_tag(beerdata_feed_path, :method => :get) do%>
-    <%= label_tag 'username', "User Name:" %>
-    <%= text_field_tag 'username' %>
-    <%= submit_tag 'Search' %>
-  <% end %>
-
+  <div class="form-div">
+    <%= form_tag(beerdata_feed_path, :method => :get) do%>
+      <%= label_tag 'username', "User Name:" %>
+      <%= text_field_tag 'username' %>
+      <%= submit_tag 'Enter', :class => 'enter-btn' %>
+    <% end %>
+  </div>
+  <div class="color-legend">
+    <ul class="legend-bar">
+      <li>January</li>
+      <li><div class="jan-color"></div></li>
+      <li><div class="early-spring-color"></div></li>
+      <li><div class="spring-color"></div></li>
+      <li><div class="early-fall-color"></div></li>
+      <li><div class="fall-color"></div></li>
+      <li><div class="dec-color"></div></li>    
+      <li>December</li>
+    <ul>
+  </div>
   <div id="chart">
-    <div class ="buttons">
+    
+  </div>
+  <div class ="buttons">
       <button class="first" id="group" onclick="transitionGroup()">Group</button>
       <button class="last active" id="stack" onclick="transitionStack()">Stack</button>
     </div>
-  </div>
 
 
 
@@ -69,7 +82,7 @@ var n = 12, // number of layers
  
  var p = 20,
      w = 1100,
-     h = 500 - .5 - p,
+     h = 450 - .5 - p,
      beerStyles=["Porter", "Stout", "Brown Ale", "Pale Ale", "Wheat Beer", "Other Ale", "American Lager", "Other Lager", "Pilsner", "Cider", "Other"],
      // color_hash = {  0 : ["apple", "green"],
           //     1 : ["mango", "orange"],
@@ -218,6 +231,6 @@ var n = 12, // number of layers
 
  }
 </script>
-   
+   <div class="display-name"><%= @username %>'s beerlytics!</div>
    <div class="bottom-border"></div>
 </div>
