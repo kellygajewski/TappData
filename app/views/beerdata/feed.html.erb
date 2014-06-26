@@ -63,17 +63,7 @@ var n = 12, // number of layers
      //     [{x:0, y:54}, {x:1,y:76}, {x:2, y:95}, {x:3, y:31}], 
      //     [{x:0, y:71}, {x:1,y:23}, {x:2, y:52}, {x:3,y:43}]],
 
-     data = d3.layout.stack()(
-      myCoolStuff
-      // [{x: 0, y: 23, name:"ipa"}, 
-      // {x:1, y:43, name:"ipa"}, 
-      // {x:2, y:76, name:"ipa"}, 
-      // {x:3,y:76, name:"ipa"}],
-
-      //    [{x:0, y:53, name:"ipa"}, {x:1, y:86, name:"ipa"}, {x:2, y:23, name:"ipa"}, {x:3,y:12, name:"ipa"}],
-      //    [{x:0, y:54, name:"ipa"}, {x:1,y:76, name:"ipa"}, {x:2, y:95, name:"ipa"}, {x:3, y:31, name:"ipa"}], 
-      //    [{x:0, y:71, name:"ipa"}, {x:1,y:23, name:"ipa"}, {x:2, y:52, name:"ipa"}, {x:3,y:43, name:"ipa"}]]
-          ),
+     data = d3.layout.stack()(myCoolStuff),
      color = d3.interpolateRgb("#FFECA0", "#491119");
      console.log(data);
  
