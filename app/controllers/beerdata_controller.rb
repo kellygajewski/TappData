@@ -22,7 +22,7 @@ class BeerdataController < ApplicationController
 
   	def feed
   		@username = params[:username] || "kelly310"
-		@response = Untappd::User.feed(@username, {:limit => 50, :max_id => i).checkins.items
+		@response = Untappd::User.feed(@username, {:limit => 50}).checkins.items
   		@month_counts=[]
 		@jan_count = []
 		@feb_count = []
