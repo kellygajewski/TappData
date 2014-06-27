@@ -37,7 +37,7 @@ class BeerdataController < ApplicationController
 		@dec_count = []	
 
 		last_id_num = 0
-  		@username = params[:username] || "T-Beni"
+  		@username = params[:username] || "kelly310"
   		@response = Untappd::User.feed(@username, {:limit => 50, :max_id => last_id_num}).checkins.items
   			while @response.length != 0
 	  			@response.each do |r|
@@ -91,7 +91,7 @@ class BeerdataController < ApplicationController
 			elsif ((response.beer.beer_style.include?("Pale") || response.beer.beer_style.include?("Amber") || response.beer.beer_style.include?("Red") ||  response.beer.beer_style.include?("Blonde") || response.beer.beer_style.include?("Scottish")) && response.beer.beer_style.include?("Ale")) || response.beer.beer_style.include?("Belgian Blonde") || response.beer.beer_style.include?("IPA") || response.beer.beer_style.include?("Barleywine") || response.beer.beer_style.include?("Bière de Garde") || response.beer.beer_style.include?("Saison") || response.beer.beer_style.include?("Bitter")
 				month_finder(response, "Pale Ale")
 				return "Pale Ale" 
-			elsif response.beer.beer_style.include?("Hefeweizen") || response.beer.beer_style.include?("Witbier")
+			elsif response.beer.beer_style.include?("Hefeweizen") || response.beer.beer_style.include?("Witbier") || response.beer.beer_style.include?("Wheat")
 				month_finder(response, "Wheat Beer")
 				return "Wheat Beer"
 			elsif response.beer.beer_style.include?("Ale") || response.beer.beer_style.include?("Altbier") || response.beer.beer_style.include?("Quadrupel")
@@ -170,7 +170,7 @@ class BeerdataController < ApplicationController
 	
 #Creates 2D array of the number of checkins per each month (rows/layers) per beer style (columns/bars). Next step is to convert each element into an object where each x is the column index (relates to each style) and each y is the number of checkins for that beer style per month ie {x: 0, y: 23} and this array can then be fed into the D3 stacked bar chart.
 	def calc_beer_months(x)
-		@top_beer_styles=["Porter", "Stout", "Brown Ale", "Pale Ale", "Wheat Beer", "Other Ale", "American Light Lager", "Other Lager", "Pilsner", "Cider", "Other"]
+		@top_beer_styles=["Porter", "Stout", "Brown Ale", "Pale Ale", "Wheat Beer", "Other Ale", "Pilsner", "American Light Lager", "Other Lager", "Cider", "Other"]
 
 		@beer_months = Array.new(12) { Array.new(11, 0)}
 
@@ -189,13 +189,13 @@ class BeerdataController < ApplicationController
 	      end
 		end
 
-		@awesomeness = []
+		@beer_months_object = []
 		@beer_months.each do |m|
 			this_month = []
 			(0...m.length).each do |s_idx|
 				this_month << {x: s_idx, y: m[s_idx]}
 			end
-			@awesomeness << this_month
+			@beer_months_object << this_month
 		end
 	end
 	
