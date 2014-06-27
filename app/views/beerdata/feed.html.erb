@@ -70,20 +70,20 @@
 
 var n = 12, // number of layers
      m = 11, // number of samples per layer
-     myCoolStuff = <%= raw @awesomeness.to_json %>,
+     beerMonths = <%= raw @beer_months_object.to_json %>,
      // data = [[{x: 0, y: 23}, {x:1, y:43}, {x:2, y:76}, {x:3,y:76}],
      //     [{x:0, y:53}, {x:1, y:86}, {x:2, y:23}, {x:3,y:12}],
      //     [{x:0, y:54}, {x:1,y:76}, {x:2, y:95}, {x:3, y:31}], 
      //     [{x:0, y:71}, {x:1,y:23}, {x:2, y:52}, {x:3,y:43}]],
 
-     data = d3.layout.stack()(myCoolStuff),
+     data = d3.layout.stack()(beerMonths),
      color = d3.interpolateRgb("#FFECA0", "#491119");
      console.log(data);
  
  var p = 20,
      w = 1100,
      h = 450 - .5 - p,
-     beerStyles=["Porter", "Stout", "Brown Ale", "Pale Ale", "Wheat Beer", "Other Ale", "American Lager", "Other Lager", "Pilsner", "Cider", "Other"],
+     beerStyles=["Porter", "Stout", "Brown Ale", "Pale Ale", "Wheat Beer", "Other Ale", "Pilsner", "American Lager", "Other Lager", "Cider", "Other"],
      // color_hash = {  0 : ["apple", "green"],
           //     1 : ["mango", "orange"],
           //     2 : ["cherry", "red"]
