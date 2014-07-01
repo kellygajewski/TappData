@@ -1,5 +1,5 @@
 TappData
 
-http://tappdthatapp.herokuapp.com/
+http://tapp-data.herokuapp.com/
 
-For users of the app Untappd (a social media site that allows users to "check in" and rate each beer they drink), our app provides advanced data analytics and visualizations to help users better understand their beer tastes and discover new beers. Still a work in progress between Kelly Gajewski and Anthony Corrado, this app is built with Ruby on Rails, D3, and JavaScript.
+For users of the app Untappd (a social media site that allows users to "check in" and rate each beer they drink), our app provides advanced data analytics and visualizations to help users better understand their beer tastes and discover new beers. Still a work in progress between Kelly Gajewski and Anthony Corrado, this app is built with Ruby on Rails, D3.js, and JavaScript.
