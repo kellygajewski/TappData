@@ -37,7 +37,7 @@ class BeerdataController < ApplicationController
 		@dec_count = []	
 
 		last_id_num = 0
-  		@username = params[:username] || "kelly310"
+  		@username = params[:username] || "jennifermarie"
   		@response = Untappd::User.feed(@username, {:limit => 50, :max_id => last_id_num}).checkins.items
   			while @response.length != 0
 	  			@response.each do |r|

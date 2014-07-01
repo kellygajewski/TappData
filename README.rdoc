@@ -1,4 +1,4 @@
-Tappd: That App!
+TappData
 
 http://tappdthatapp.herokuapp.com/
 
