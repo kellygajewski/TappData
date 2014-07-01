@@ -1,7 +1,7 @@
 
 <div class="navbar">
     <ul>
-      <li>Tappd: That App!</li>
+      <li>TappData</li>
     </ul>
 </div>
 <!-- stacked bar chart!! -->
@@ -10,7 +10,7 @@
 
   <div class="form-div">
     <%= form_tag(beerdata_feed_path, :method => :get) do%>
-      <%= label_tag 'username', "User Name:" %>
+      <%= label_tag 'username', "Username:" %>
       <%= text_field_tag 'username' %>
       <%= submit_tag 'Enter', :class => 'enter-btn' %>
     <% end %>
