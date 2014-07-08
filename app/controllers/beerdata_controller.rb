@@ -1,3 +1,5 @@
+#Yes this controller is a mess...
+
 class BeerdataController < ApplicationController
 
   	# before_action :get_single_feed, only: [:index]
@@ -25,13 +27,16 @@ class BeerdataController < ApplicationController
 
 		last_id_num = 0
   		@username = params[:username] || "jennifermarie"
-  		@response = Untappd::User.feed(@username, {:limit => 50, :max_id => last_id_num}).checkins.items
+  		# @response = Untappd::User.feed(@username, {:limit => 50, :max_id => last_id_num}).checkins.items
+  		# Gets user distinct beers, which unlike checkins contains beer descriptions. Unfortunately this also will not capture duplicate beers. The only alternative I came up with was calling checkins and then calling beer info on each checkin but of course that would drive up the number of API calls too high.
+  		@response = Untappd::User.distinct(@username, {:limit => 50, :max_id => last_id_num}).beers.items
   			while @response.length != 0
 	  			@response.each do |r|
 	  				main_style(r)
 	  			end
-	  			last_id_num = @response.last.checkin_id
-	  			@response = Untappd::User.feed(@username, {:limit => 50, :max_id => last_id_num}).checkins.items
+	  			last_id_num = @response.last.recent_checkin_id #@response.last.checkin_id
+	  			# @response = Untappd::User.feed(@username, {:limit => 50, :max_id => last_id_num}).checkins.items
+	  			@response = Untappd::User.distinct(@username, {:limit => 50, :max_id => last_id_num}).beers.items
 	  		end
   	end
 
@@ -89,7 +94,8 @@ class BeerdataController < ApplicationController
 
 	def month_finder(response, category)
 
-		month = response.created_at[8..10]
+		# month = response.created_at[8..10]
+		month = response.recent_created_at[8..10]
 		if month == "Jan"
 			@jan_count.push(category)
 		elsif month == "Feb"
@@ -168,20 +174,41 @@ class BeerdataController < ApplicationController
 	
 
 
-#Should return the top 3 nouns, noun phrases, or adjectives per description sample using the Engtagger gem. Still in progress.
-	def self.top_words
+#Finds the number of times each word or phrase occurs in beer descriptions using the Engtagger gem. Still under construction.
+	#def self.top_words
+	def top_words(response)
 		tgr = EngTagger.new
+		desc_array = []
 		# self.each do |b|
-		# 	desc_array.push(b.beer_description)
-		# end
-		# desc_string = desc_array.join(" ")
 
+		#Creates array of all beer descriptions
+		response.each do |r|
+			desc_array.push(r.beer.beer_description)
+		end
+		desc_string = desc_array.join(" ").downcase.delete "."
+
+		#Adds parts of speech to each word in the descriptions
 		tagged = tgr.add_tags(desc_string)
-		nouns = tgr.get_words(tagged)
+		#Collects all words tagged as nouns or noun phrases with the number of times they occur
+		nouns = tgr.get_noun_phrases(tagged)
+		#collects all words tagged as adjectives with the number of times they occur
 		adj = tgr.get_adjectives(tagged)
+		#Combines noun phrases and adjectives into one hash
 		words = nouns.merge(adj)
-		words.sort {|k,v| k[-1]<=>v[-1]}
-		return "#{words[0][0]}, #{words[1][0]}, #{words[2][0]}"
+		#Removes some meaningless words as keys. didn't remove them earlier because I imagine they could potentially still be useful in noun phrases
+		words = words.except("beer", "brew", "flavor", "first", "character", "finish", "color", "style", "taste", "aroma", "aromas", "brewery")
+		#Exclude words with count of 2 (for now) or fewer
+		valid_keys = []
+		words.each do |k,v| 
+			if v > 2
+				valid_keys.push(k)
+			end	
+		end
+		words.slice!(*valid_keys)
+		#Converts hash into array and sorts with highest value first
+		words_array = words.sort {|k,v| v[1]<=>k[1]}
+		
+		#return "#{words[0][0]}, #{words[1][0]}, #{words[2][0]}"
 	end
 
 
