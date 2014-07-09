@@ -1,4 +1,4 @@
-# Gathering Beer Data and Making it Useful and Pretty! That's TappData.
+## Gathering Beer Data and Making it Useful and Look Pretty! That's TappData.
 
 Want to know what the most popular style of beer in Chicago is during the winter months? How about how beer tastes change as we age? Want to see beautiful D3 charts breaking down your personal consumption habits and preferences while simultaneously convincing you that science is cool? TappData is your app. 
 
