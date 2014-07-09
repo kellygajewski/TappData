@@ -27,8 +27,8 @@ Our app sifts through the data of over one million user check ins per month. App
 ### About Us...and Potentially You
 
 Create by Kelly Gajewski and Anthony Corrado. Inspired by Kelly's quest for knowledge and beer; both noble causes. If you have any questions, comments or feedback, please connect. Feel free to fork the project and share with us!
-Kelly --> 
-Anthony --> anthonymcorrado
+* Kelly --> 
+* Anthony --> anthonymcorrado@gmail.com
 
 See the app live here: http://tapp-data.herokuapp.com/
 
