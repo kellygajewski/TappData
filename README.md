@@ -22,7 +22,7 @@ Our app sifts through the data of over one million user check ins per month. App
 * JavaScript
 * D3
 * Untappd API (thanks, Jen!)
-* Blood, sweat & tears. The band, not the fluids
+* Blood, sweat & tears. The music of, not the fluids
 
 ### About Us...and Potentially You
 
