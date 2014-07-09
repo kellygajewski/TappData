@@ -18,7 +18,7 @@ Our app sifts through the data of over one million user check ins per month. App
 
 ### Built with...
 
-* Ruby or Rails
+* Ruby on Rails
 * JavaScript
 * D3
 * Untappd API (thanks, Jen!)
