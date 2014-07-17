@@ -10,7 +10,6 @@ class BeerdataController < ApplicationController
   	end
 
   	def feed
-
   		@month_counts=[]
 		@jan_count = []
 		@feb_count = []
@@ -25,31 +24,39 @@ class BeerdataController < ApplicationController
 		@nov_count = []
 		@dec_count = []	
 
-		#last_id_num = 0
-		offset = 0
+		#@last_id_num = 0
+		@offset = 0
   		@username = params[:username] || "jennifermarie"
   		begin #starts rescue block
-  		# @response = Untappd::User.feed(@username, {:limit => 50, :max_id => last_id_num}).checkins.items
+  		# @response = Untappd::User.feed(@username, {:limit => 50, :max_id => @last_id_num}).checkins.items
   		# Gets user distinct beers, which unlike checkins contains beer descriptions. Unfortunately this also will not capture duplicate beers. The only alternative I came up with was calling checkins and then calling beer info on each checkin but of course that would drive up the number of API calls too high. Please still leave in the code for checkin feed for now though :)
-  			@response = Untappd::User.distinct(@username, {:limit => 50, :offset => offset}).beers.items
-  		rescue NoMethodError => e
+  			@response = Untappd::User.distinct(@username, {:limit => 50, :offset => @offset}).beers.items
+  		rescue NoMethodError
   			redirect_to beers_path
 	  		puts "FAIL"
-	  			#raise 'test'
 	  	else
-  			while @response.length != 0
-	  			@response.each do |r|
-	  				main_style(r)
-	  			end
-	  			#last_id_num = @response.last.recent_checkin_id #@response.last.checkin_id
-	  			# @response = Untappd::User.feed(@username, {:limit => 50, :max_id => last_id_num}).checkins.items
-	  			offset += 50
-	  			@response = Untappd::User.distinct(@username, {:limit => 50, :offset => offset}).beers.items
-	  		end
+	  		get_beer_styles
 	  	end
-
   	end
 
+  	def get_beer_styles
+  		while @response.length != 0
+  			@response.each do |r|
+  				main_style(r)
+  			end
+  			#@last_id_num = @response.last.recent_checkin_id #@response.last.checkin_id
+  			# @response = Untappd::User.feed(@username, {:limit => 50, :max_id => @last_id_num}).checkins.items
+  			@offset += 50
+  			begin
+  				@response = Untappd::User.distinct(@username, {:limit => 50, :offset => @offset}).beers.items
+  			rescue NoMethodError
+				redirect_to beers_path
+  				puts "FAIL"
+  			else
+  				get_beer_styles
+  			end
+	  	end
+  	end
 
 
 	def get_feed
