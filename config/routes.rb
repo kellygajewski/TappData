@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :charts
   resources :beers
   resources :checkins
+  resources :beerdatas
 
   
   root "beerdata#feed"
