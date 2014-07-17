@@ -31,7 +31,12 @@ class BeerdataController < ApplicationController
   		begin #starts rescue block
   		# @response = Untappd::User.feed(@username, {:limit => 50, :max_id => last_id_num}).checkins.items
   		# Gets user distinct beers, which unlike checkins contains beer descriptions. Unfortunately this also will not capture duplicate beers. The only alternative I came up with was calling checkins and then calling beer info on each checkin but of course that would drive up the number of API calls too high. Please still leave in the code for checkin feed for now though :)
-  		@response = Untappd::User.distinct(@username, {:limit => 50, :offset => offset}).beers.items
+  			@response = Untappd::User.distinct(@username, {:limit => 50, :offset => offset}).beers.items
+  		rescue NoMethodError => e
+  			redirect_to beers_path
+	  		puts "FAIL"
+	  			#raise 'test'
+	  	else
   			while @response.length != 0
 	  			@response.each do |r|
 	  				main_style(r)
@@ -41,11 +46,8 @@ class BeerdataController < ApplicationController
 	  			offset += 50
 	  			@response = Untappd::User.distinct(@username, {:limit => 50, :offset => offset}).beers.items
 	  		end
-	  	rescue StandardError
-	  		redirect_to beerdatas_path
-	  		puts "FAIL"
-	  	ensure
 	  	end
+
   	end
 
 
