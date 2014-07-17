@@ -25,18 +25,20 @@ class BeerdataController < ApplicationController
 		@nov_count = []
 		@dec_count = []	
 
-		last_id_num = 0
+		#last_id_num = 0
+		offset = 0
   		@username = params[:username] || "jennifermarie"
   		# @response = Untappd::User.feed(@username, {:limit => 50, :max_id => last_id_num}).checkins.items
-  		# Gets user distinct beers, which unlike checkins contains beer descriptions. Unfortunately this also will not capture duplicate beers. The only alternative I came up with was calling checkins and then calling beer info on each checkin but of course that would drive up the number of API calls too high.
-  		@response = Untappd::User.distinct(@username, {:limit => 50, :max_id => last_id_num}).beers.items
+  		# Gets user distinct beers, which unlike checkins contains beer descriptions. Unfortunately this also will not capture duplicate beers. The only alternative I came up with was calling checkins and then calling beer info on each checkin but of course that would drive up the number of API calls too high. Please still leave in the code for checkin feed for now though :)
+  		@response = Untappd::User.distinct(@username, {:limit => 50, :offset => offset}).beers.items
   			while @response.length != 0
 	  			@response.each do |r|
 	  				main_style(r)
 	  			end
-	  			last_id_num = @response.last.recent_checkin_id #@response.last.checkin_id
+	  			#last_id_num = @response.last.recent_checkin_id #@response.last.checkin_id
 	  			# @response = Untappd::User.feed(@username, {:limit => 50, :max_id => last_id_num}).checkins.items
-	  			@response = Untappd::User.distinct(@username, {:limit => 50, :max_id => last_id_num}).beers.items
+	  			offset += 50
+	  			@response = Untappd::User.distinct(@username, {:limit => 50, :offset => offset}).beers.items
 	  		end
   	end
 
