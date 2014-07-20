@@ -59,3 +59,8 @@ body {
   background: yellow;
   box-shadow: 2px 2px 1px #888;
 }
+
+#bubblechart {
+  width:800px; 
+  margin: -50px auto;
+}
