@@ -23,7 +23,7 @@ class BeerdataController < ApplicationController
 		@oct_count = []
 		@nov_count = []
 		@dec_count = []	
-
+		@desc_array = [] #will store all beer descriptions
 		#@last_id_num = 0
 		@offset = 0
   		@username = params[:username] || "jennifermarie"
@@ -43,6 +43,7 @@ class BeerdataController < ApplicationController
   		while @response.length != 0
   			@response.each do |r|
   				main_style(r)
+  				store_description(r)
   			end
   			#@last_id_num = @response.last.recent_checkin_id #@response.last.checkin_id
   			# @response = Untappd::User.feed(@username, {:limit => 50, :max_id => @last_id_num}).checkins.items
@@ -56,6 +57,7 @@ class BeerdataController < ApplicationController
   				get_beer_styles
   			end
 	  	end
+	  	top_words
   	end
 
 
@@ -69,41 +71,40 @@ class BeerdataController < ApplicationController
 	end
 
 	def main_style(response)
-
-			if response.beer.beer_style.include?("Porter")
-				month_finder(response, "Porter")
-				return "Porter"
-			elsif response.beer.beer_style.include?("Stout")
-				month_finder(response, "Stout")
-				return "Stout"
-			elsif response.beer.beer_style.include?("Brown Ale") || response.beer.beer_style.include?("Dubbel")
-				month_finder(response, "Brown Ale")
-				return "Brown Ale" 
-			elsif ((response.beer.beer_style.include?("Pale") || response.beer.beer_style.include?("Amber") || response.beer.beer_style.include?("Red") ||  response.beer.beer_style.include?("Blonde") || response.beer.beer_style.include?("Scottish")) && response.beer.beer_style.include?("Ale")) || response.beer.beer_style.include?("Belgian Blonde") || response.beer.beer_style.include?("IPA") || response.beer.beer_style.include?("Barleywine") || response.beer.beer_style.include?("Bière de Garde") || response.beer.beer_style.include?("Saison") || response.beer.beer_style.include?("Bitter")
-				month_finder(response, "Pale Ale")
-				return "Pale Ale" 
-			elsif response.beer.beer_style.include?("Hefeweizen") || response.beer.beer_style.include?("Witbier") || response.beer.beer_style.include?("Wheat")
-				month_finder(response, "Wheat Beer")
-				return "Wheat Beer"
-			elsif response.beer.beer_style.include?("Ale") || response.beer.beer_style.include?("Altbier") || response.beer.beer_style.include?("Quadrupel")
-				month_finder(response, "Other Ale")
-				return "Other Ale"
-			elsif response.beer.beer_style.include?("American Adjunct Lager") || response.beer.beer_style.include?("American Light Lager")
-				month_finder(response, "American Lager")
-				return "American Lager"
-			elsif response.beer.beer_style.include?("Lager") || response.beer.beer_style.include?("bock") || response.beer.beer_style.include?("Bock")
-				month_finder(response, "Other Lager")
-				return "Other Lager"
-			elsif response.beer.beer_style.include?("Pilsner")
-				month_finder(response, "Pilsner")
-				return "Pilsner"
-			elsif response.beer.beer_style.include?("Cider")
-				month_finder(response, "Cider")
-				return "Cider"
-			else
-				month_finder(response, "Other")
-				return "Other"
-			end	
+		if response.beer.beer_style.include?("Porter")
+			month_finder(response, "Porter")
+			return "Porter"
+		elsif response.beer.beer_style.include?("Stout")
+			month_finder(response, "Stout")
+			return "Stout"
+		elsif response.beer.beer_style.include?("Brown Ale") || response.beer.beer_style.include?("Dubbel")
+			month_finder(response, "Brown Ale")
+			return "Brown Ale" 
+		elsif ((response.beer.beer_style.include?("Pale") || response.beer.beer_style.include?("Amber") || response.beer.beer_style.include?("Red") ||  response.beer.beer_style.include?("Blonde") || response.beer.beer_style.include?("Scottish")) && response.beer.beer_style.include?("Ale")) || response.beer.beer_style.include?("Belgian Blonde") || response.beer.beer_style.include?("IPA") || response.beer.beer_style.include?("Barleywine") || response.beer.beer_style.include?("Bière de Garde") || response.beer.beer_style.include?("Saison") || response.beer.beer_style.include?("Bitter")
+			month_finder(response, "Pale Ale")
+			return "Pale Ale" 
+		elsif response.beer.beer_style.include?("Hefeweizen") || response.beer.beer_style.include?("Witbier") || response.beer.beer_style.include?("Wheat")
+			month_finder(response, "Wheat Beer")
+			return "Wheat Beer"
+		elsif response.beer.beer_style.include?("Ale") || response.beer.beer_style.include?("Altbier") || response.beer.beer_style.include?("Quadrupel")
+			month_finder(response, "Other Ale")
+			return "Other Ale"
+		elsif response.beer.beer_style.include?("American Adjunct Lager") || response.beer.beer_style.include?("American Light Lager")
+			month_finder(response, "American Lager")
+			return "American Lager"
+		elsif response.beer.beer_style.include?("Lager") || response.beer.beer_style.include?("bock") || response.beer.beer_style.include?("Bock")
+			month_finder(response, "Other Lager")
+			return "Other Lager"
+		elsif response.beer.beer_style.include?("Pilsner")
+			month_finder(response, "Pilsner")
+			return "Pilsner"
+		elsif response.beer.beer_style.include?("Cider")
+			month_finder(response, "Cider")
+			return "Cider"
+		else
+			month_finder(response, "Other")
+			return "Other"
+		end	
 	
 	end
 
@@ -191,18 +192,16 @@ class BeerdataController < ApplicationController
 	
 
 
-#Finds the number of times each word or phrase occurs in beer descriptions using the Engtagger gem. Still under construction.
-	#def self.top_words
-	def top_words(response)
-		tgr = EngTagger.new
-		desc_array = []
-		# self.each do |b|
-
+	def store_description(response)		
 		#Creates array of all beer descriptions
-		response.each do |r|
-			desc_array.push(r.beer.beer_description)
-		end
-		desc_string = desc_array.join(" ").downcase.delete "."
+		@desc_array.push(response.beer.beer_description)
+	end
+
+		#Finds the number of times each word or phrase occurs in beer descriptions using the Engtagger gem.
+	#def self.top_words
+	def top_words
+		tgr = EngTagger.new
+		desc_string = @desc_array.join(" ").downcase.delete "."
 
 		#Adds parts of speech to each word in the descriptions
 		tagged = tgr.add_tags(desc_string)
@@ -223,11 +222,17 @@ class BeerdataController < ApplicationController
 		end
 		words.slice!(*valid_keys)
 		#Converts hash into array and sorts with highest value first
-		words_array = words.sort {|k,v| v[1]<=>k[1]}
-		
-		#return "#{words[0][0]}, #{words[1][0]}, #{words[2][0]}"
+		@words_array = words.sort {|k,v| v[1]<=>k[1]}
+		bubble_chart_hack
 	end
 
+	def bubble_chart_hack
+		@words_object=[]
+		@words_array.each do |x|
+			@words_object << {name: x[0], size: x[1]}
+		end
+		@words_object = {children: [{color: "burlywood", children: @words_object}]}
+	end
 
 	private
 
