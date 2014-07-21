@@ -1,4 +1,4 @@
-
+<!-- Yes this view is also a mess... -->
 <div class="navbar">
     <ul>
       <li>TappData</li>
@@ -16,7 +16,7 @@
     <% end %>
   </div>
 
-<div class="display-name"><%= @username.capitalize %>'s most consumed beers per month</div>
+<div class="display-name"><%= @username.capitalize %>'s most consumed beer styles per month</div>
 
   <div class="color-legend">
     <ul class="legend-bar">
@@ -58,7 +58,7 @@ var n = 12, // number of layers (months)
  var p = 20,
      w = 1100,
      h = 450 - .5 - p,
-     beerStyles=["Porter", "Stout", "Brown Ale", "Pale Ale", "Wheat Beer", "Other Ale", "Pilsner", "American Lager", "Other Lager", "Cider", "Other"],
+     beerStyles=["Porter", "Stout", "Brown Ale", "Pale Ale", "Red/Amber Ale", "Belgian Ale", "Wheat Ale", "Other Ale", "Pilsner", "Other Lager", "Other"],
 
      mx = m,
      my = d3.max(data, function(d) {
