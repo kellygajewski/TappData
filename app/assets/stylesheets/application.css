@@ -65,3 +65,7 @@ body {
   height: 800px;
   margin: -50px auto;
 }
+
+a {
+  color: #deb887;
+}
