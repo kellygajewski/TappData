@@ -198,7 +198,6 @@ class BeerdataController < ApplicationController
 	end
 
 		#Finds the number of times each word or phrase occurs in beer descriptions using the Engtagger gem.
-	#def self.top_words
 	def top_words
 		tgr = EngTagger.new
 		desc_string = @desc_array.join(" ").downcase.delete "."
@@ -211,8 +210,8 @@ class BeerdataController < ApplicationController
 		adj = tgr.get_adjectives(tagged)
 		#Combines noun phrases and adjectives into one hash
 		words = nouns.merge(adj)
-		#Removes some meaningless words as keys. didn't remove them earlier because I imagine they could potentially still be useful in noun phrases
-		words = words.except("beer", "brew", "flavor", "first", "character", "finish", "color", "style", "taste", "aroma", "aromas", "brewery")
+		#Removes some meaningless words as keys. Didn't remove them earlier because I imagine some could potentially still be useful in noun phrases
+		words = words.except("beer", "brew", "flavor", "first", "character", "finish", "color", "style", "taste", "aroma", "aromas", "brewery", "brewing", "%", "other", "one", "perfect", "bottle", "flavors", "abv", "profile", "new", "notes", "great", "delicious")
 		#Exclude words with count of 2 (for now) or fewer
 		valid_keys = []
 		words.each do |k,v| 
@@ -223,6 +222,7 @@ class BeerdataController < ApplicationController
 		words.slice!(*valid_keys)
 		#Converts hash into array and sorts with highest value first
 		@words_array = words.sort {|k,v| v[1]<=>k[1]}
+		@words_array = @words_array.first(60)
 		bubble_chart_hack
 	end
 
