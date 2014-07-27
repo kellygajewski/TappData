@@ -214,22 +214,24 @@ class BeerdataController < ApplicationController
 		nouns = tgr.get_noun_phrases(tagged)
 		#collects all words tagged as adjectives with the number of times they occur
 		adj = tgr.get_adjectives(tagged)
-		#Combines noun phrases and adjectives into one hash
-		words = nouns.merge(adj)
-		#Removes some meaningless words as keys. Didn't remove them earlier because I imagine some could potentially still be useful in noun phrases
-		words = words.except("beer", "brew", "flavor", "first", "character", "finish", "color", "style", "taste", "aroma", "aromas", "brewery", "brewing", "%", "other", "one", "perfect", "bottle", "flavors", "abv", "profile", "new", "notes", "great", "delicious", "beers")
-		#Exclude words with count of 2 (for now) or fewer
-		valid_keys = []
-		words.each do |k,v| 
-			if v > 2
-				valid_keys.push(k)
-			end	
+		if nouns #prevents app from breaking with invalid username
+			#Combines noun phrases and adjectives into one hash
+			words = nouns.merge(adj)
+			#Removes some meaningless words as keys. Didn't remove them earlier because I imagine some could potentially still be useful in noun phrases
+			words = words.except("beer", "brew", "flavor", "first", "character", "finish", "color", "style", "taste", "aroma", "aromas", "brewery", "brewing", "%", "other", "one", "perfect", "bottle", "flavors", "abv", "profile", "new", "notes", "great", "delicious", "beers", "such")
+			#Exclude words with count of 2 (for now) or fewer
+			valid_keys = []
+			words.each do |k,v| 
+				if v > 2
+					valid_keys.push(k)
+				end	
+			end
+			words.slice!(*valid_keys)
+			#Converts hash into array and sorts with highest value first
+			@words_array = words.sort {|k,v| v[1]<=>k[1]}
+			@words_array = @words_array.first(60)
+			bubble_chart_hack
 		end
-		words.slice!(*valid_keys)
-		#Converts hash into array and sorts with highest value first
-		@words_array = words.sort {|k,v| v[1]<=>k[1]}
-		@words_array = @words_array.first(60)
-		bubble_chart_hack
 	end
 
 	def bubble_chart_hack
