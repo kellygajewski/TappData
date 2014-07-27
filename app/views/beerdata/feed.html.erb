@@ -4,19 +4,23 @@
       <li>TappData</li>
     </ul>
 </div>
-<!-- stacked bar chart!! -->
+
 <div id="main-container">
 
+<div class="form-div">
+  <%= form_tag(beerdata_feed_path, :method => :get) do%>
+    <%= label_tag 'username', "Untappd Username:" %>
+    <%= text_field_tag 'username' %>
+    <%= submit_tag 'Enter', :class => 'enter-btn' %>
+  <% end %>
+</div>
 
-  <div class="form-div">
-    <%= form_tag(beerdata_feed_path, :method => :get) do%>
-      <%= label_tag 'username', "Untappd Username:" %>
-      <%= text_field_tag 'username' %>
-      <%= submit_tag 'Enter', :class => 'enter-btn' %>
-    <% end %>
+<% if !@valid_username %>
+  <div class="display-name">User either has not yet checked in a beer or does not exist.<br /> Please try a different username.
   </div>
-
-<div class="display-name"><%= @username.capitalize %>'s most consumed beer styles per month</div>
+<% else %>
+  <div class="display-name"><%= @username.capitalize %>'s most consumed beer styles per month
+  </div>
 
   <div class="color-legend">
     <ul class="legend-bar">
@@ -30,22 +34,27 @@
       <li>December</li>
     <ul>
   </div>
-  <div id="chart">
-    
+  <!-- stacked bar chart!! -->
+  <div id="chart">  
   </div>
   <div class ="buttons">
       <button class="first" id="group" onclick="transitionGroup()">Group</button>
       <button class="last active" id="stack" onclick="transitionStack()">Stack</button>
-    </div>
+  </div>
 
-<div class="display-name">Most occurring words in descriptions of <%= @username.capitalize %>'s beers</div>
+  <div class="display-name">Most occurring words in descriptions of <%= @username.capitalize %>'s beers
+  </div>
 
-<div id="bubblechart"></div>
+  <div id="bubblechart">
+  </div>
 
-<div class="display-name">Powered by <a href="http://www.untappd.com" target="_blank">Untappd</a></div>
+<% end %>
+
+<div class="display-name">Powered by <a href="http://www.untappd.com" target="_blank">Untappd</a>
+</div>
 
 <script>
-
+//stacked bar chart
 var n = 12, // number of layers (months)
     m = 11, // number of samples per layer (beer styles)
     beerMonths = <%= raw @beer_months_object.to_json %>,
@@ -173,22 +182,13 @@ var n = 12, // number of layers (months)
          .attr("x", 0)
          .attr("width", x({x: .9}));
    }
-
-
-
  }
 
 
 
 
 
-
-
-
-
 //bubble chart showing most occurring words in user's beer descriptions
-
-
 
  // var data ={"children": [{"color": "blue", "children": [{"name": "vanilla", "size": 11}, {"name": "chocolate", "size": 4}, {"name": "mint", "size": 6}]}]};
  var data = <%= raw @words_object.to_json %>,
