@@ -215,6 +215,7 @@ class BeerdataController < ApplicationController
 		#collects all words tagged as adjectives with the number of times they occur
 		adj = tgr.get_adjectives(tagged)
 		if nouns #prevents app from breaking with invalid username
+			@valid_username = true
 			#Combines noun phrases and adjectives into one hash
 			words = nouns.merge(adj)
 			#Removes some meaningless words as keys. Didn't remove them earlier because I imagine some could potentially still be useful in noun phrases
@@ -231,6 +232,8 @@ class BeerdataController < ApplicationController
 			@words_array = words.sort {|k,v| v[1]<=>k[1]}
 			@words_array = @words_array.first(60)
 			bubble_chart_hack
+		else
+			@valid_username = false
 		end
 	end
 
