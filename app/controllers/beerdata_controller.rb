@@ -36,6 +36,7 @@ class BeerdataController < ApplicationController
 	  		puts "FAIL"
 	  	else
 	  		get_beer_styles
+	  		top_words
 	  	end
   	end
 
@@ -57,7 +58,7 @@ class BeerdataController < ApplicationController
   				get_beer_styles
   			end
 	  	end
-	  	top_words
+	  	
   	end
 
 
@@ -219,7 +220,7 @@ class BeerdataController < ApplicationController
 			#Combines noun phrases and adjectives into one hash
 			words = nouns.merge(adj)
 			#Removes some meaningless words as keys. Didn't remove them earlier because I imagine some could potentially still be useful in noun phrases
-			words = words.except("beer", "brew", "flavor", "first", "character", "finish", "color", "style", "taste", "aroma", "aromas", "brewery", "brewing", "%", "other", "one", "perfect", "bottle", "flavors", "abv", "profile", "new", "notes", "great", "delicious", "beers", "such")
+			words = words.except("beer", "brew", "flavor", "first", "character", "finish", "color", "style", "taste", "aroma", "aromas", "brewery", "brewing", "%", "other", "one", "perfect", "bottle", "flavors", "abv", "profile", "new", "notes", "great", "delicious", "beers", "such", "alcohol")
 			#Exclude words with count of 2 (for now) or fewer
 			valid_keys = []
 			words.each do |k,v| 
