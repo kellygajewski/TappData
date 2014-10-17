@@ -26,7 +26,7 @@ class BeerdataController < ApplicationController
 		@desc_array = [] #will store all beer descriptions
 		#@last_id_num = 0
 		@offset = 0
-  		@username = params[:username] || "jennifermarie"
+  		@username = params[:username] || "kelly310"
   		begin #starts rescue block
   		# @response = Untappd::User.feed(@username, {:limit => 50, :max_id => @last_id_num}).checkins.items
   		# Gets user distinct beers, which unlike checkins contains beer descriptions. Unfortunately this also will not capture duplicate beers. The only alternative I came up with was calling checkins and then calling beer info on each checkin but of course that would drive up the number of API calls too high. Please still leave in the code for checkin feed for now though :)
